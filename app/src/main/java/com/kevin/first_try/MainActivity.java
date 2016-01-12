@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     i.putExtra("search",title);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getApplicationContext().startActivity(i);
+                    finish();
                 }
             });
             int buttonwidth=myButton.getText().length();

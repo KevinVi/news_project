@@ -39,8 +39,8 @@ public class ListAdapter extends ArrayAdapter<Data> {
         Data p = getItem(position);
 
         if (p != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.number);
-            TextView tt2 = (TextView) v.findViewById(R.id.content);
+            TextView tt1 = (TextView) v.findViewById(R.id.number_list);
+            TextView tt2 = (TextView) v.findViewById(R.id.content_list);
 
             if (tt1 != null) {
                 tt1.setText(p.number);
