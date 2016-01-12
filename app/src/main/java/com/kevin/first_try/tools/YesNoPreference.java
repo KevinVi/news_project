@@ -1,5 +1,5 @@
 
-package com.kevin.first_try;
+package com.kevin.first_try.tools;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.preference.DialogPreference;
 import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.Toast;
 
 /**

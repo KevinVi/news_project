@@ -1,4 +1,4 @@
-package com.kevin.first_try;
+package com.kevin.first_try.activity;
 
 
 import android.annotation.TargetApi;
@@ -23,6 +23,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.kevin.first_try.R;
 
 import java.util.List;
 

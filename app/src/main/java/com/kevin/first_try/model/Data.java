@@ -1,4 +1,4 @@
-package com.kevin.first_try;
+package com.kevin.first_try.model;
 
 /**
  * Created by kevin on 12/01/2016.

@@ -1,4 +1,4 @@
-package com.kevin.first_try;
+package com.kevin.first_try.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.kevin.first_try.R;
+import com.kevin.first_try.model.Data;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by kevin on 12/01/2016.
@@ -57,7 +58,7 @@ public class ListActivity extends AppCompatActivity {
             list.add(new Data(""+i,values[i]));
 
         }
-        ListAdapter adapter = new com.kevin.first_try.ListAdapter(this, list);
+        ListAdapter adapter = new com.kevin.first_try.adapter.ListAdapter(this, list);
         ListView lv=(ListView)findViewById(R.id.listview);
         lv.setAdapter(adapter);
 

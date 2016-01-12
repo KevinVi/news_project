@@ -5,7 +5,7 @@
     <PreferenceCategory
         android:title="@string/action_settings">
 
-        <com.kevin.first_try.YesNoPreference
+        <com.kevin.first_try.tools.YesNoPreference
             android:title="Reset application"
             android:summary="Delete all data"
             />

@@ -1,17 +1,18 @@
-package com.kevin.first_try;
+package com.kevin.first_try.adapter;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kevin.first_try.R;
+import com.kevin.first_try.activity.Detail_activity;
+import com.kevin.first_try.model.Data;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kevin on 12/01/2016.

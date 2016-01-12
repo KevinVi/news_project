@@ -1,15 +1,14 @@
-package com.kevin.first_try;
+package com.kevin.first_try.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
+
+import com.kevin.first_try.R;
 
 public class Detail_activity extends AppCompatActivity {
 
