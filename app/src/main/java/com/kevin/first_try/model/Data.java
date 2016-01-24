@@ -1,9 +1,11 @@
 package com.kevin.first_try.model;
 
+import co.uk.rushorm.core.RushObject;
+
 /**
  * Created by kevin on 12/01/2016.
  */
-public class Data {
+public class Data extends RushObject {
     public String number;
     public String content;
 
@@ -11,6 +13,7 @@ public class Data {
         this.content =content;
         this.number = nb;
     }
+<<<<<<< HEAD
 
     public String getNumber() {
         return number;
@@ -27,4 +30,6 @@ public class Data {
     public void setContent(String content) {
         this.content = content;
     }
+=======
+>>>>>>> bb4d8314078b72b8f7bd4deeba1eb379c1cc6c61
 }
