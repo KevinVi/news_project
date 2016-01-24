@@ -13,7 +13,6 @@ public class Data extends RushObject {
         this.content =content;
         this.number = nb;
     }
-<<<<<<< HEAD
 
     public String getNumber() {
         return number;
@@ -30,6 +29,4 @@ public class Data extends RushObject {
     public void setContent(String content) {
         this.content = content;
     }
-=======
->>>>>>> bb4d8314078b72b8f7bd4deeba1eb379c1cc6c61
 }
