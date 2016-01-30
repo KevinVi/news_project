@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import android.text.format.Formatter;
 import android.util.Log;
 
+import com.kevin.first_try.model.Data;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -13,6 +16,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -20,13 +24,28 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by leolebogoss on 24/01/2016.
  */
 
-public class JsonRequest extends AsyncTask<Object, Void,Boolean> {
+public class JsonRequest extends AsyncTask<Object, Void,ArrayList<Data>> {
     private final Context mContext;
+    private final String CONTENT = "content";
+    private final String TITLE = "titleNoFormatting";
+    private final String PUBLISHER = "publisher";
+    private final String DATE = "publishedDate";
+    private final String IMG = "url";
+
+    private final String RESPONSE = "responseData";
+    private final String DETAIL = "responseDetail";
+    private final String STATUS = "responseStatus";
+    private final String IMAGE = "image";
+    private final String RESULT = "results";
+
+    ArrayList<Data> contents = new ArrayList<>();
+    Data content_data = null;
+
     public JsonRequest (Context ctx){
         mContext=ctx;
     }
     @Override
-    protected Boolean doInBackground(Object... params) {
+    protected ArrayList<Data> doInBackground(Object... params) {
         final String data = (String) params[0];
 
         WifiManager wm = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
@@ -52,12 +71,31 @@ public class JsonRequest extends AsyncTask<Object, Void,Boolean> {
                 Log.i("JsonRequest", sb.toString());
 
                 JSONObject json = new JSONObject(sb.toString());
+                JSONObject responseData = json.getJSONObject(RESPONSE);
+                JSONArray results = responseData.getJSONArray(RESULT);
+
+                for (int i = 0 ; i< results.length() ; i++){
+                    JSONObject contentResult = results.getJSONObject(i);
+
+                    String title = contentResult.getString(TITLE);
+                    String content = contentResult.getString(CONTENT);
+                    String date = contentResult.getString(DATE);
+                    String publisher = contentResult.getString(PUBLISHER);
+                    JSONObject img = contentResult.getJSONObject(IMAGE);
+                    String image = img.getString(IMG);
+
+                    content_data = new Data(title,content,publisher,date,image);
+
+                    contents.add(content_data);
+
+                }
 
 
 
-                return true;
+                return contents;
             }catch (Exception ex){
-                return false;
+                ex.printStackTrace();
+                return null;
 
             }
 
@@ -67,6 +105,6 @@ public class JsonRequest extends AsyncTask<Object, Void,Boolean> {
         }
 
 
-        return false;
+        return null;
     }
 }

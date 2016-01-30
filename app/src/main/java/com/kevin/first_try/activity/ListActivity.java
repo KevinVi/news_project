@@ -23,6 +23,7 @@ import java.util.ArrayList;
  */
 public class ListActivity extends AppCompatActivity {
     String title=null;
+    ArrayList<Data> data = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +34,10 @@ public class ListActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+
         try {
             title = intent.getStringExtra("search");
+            data = (ArrayList<Data>) intent.getSerializableExtra("data");
             Log.i("-------","hello : "+title);
         }catch (Exception e){
             e.printStackTrace();
@@ -47,18 +50,8 @@ public class ListActivity extends AppCompatActivity {
         t.setText(title);
 
         final ListView listview = (ListView) findViewById(R.id.listview);
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
 
-        final ArrayList<Data> list = new ArrayList<Data>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(new Data(""+i,values[i]));
-
-        }
-        ListAdapter adapter = new com.kevin.first_try.adapter.ListAdapter(this, list);
+        ListAdapter adapter = new com.kevin.first_try.adapter.ListAdapter(this, data);
         ListView lv=(ListView)findViewById(R.id.listview);
         lv.setAdapter(adapter);
 
