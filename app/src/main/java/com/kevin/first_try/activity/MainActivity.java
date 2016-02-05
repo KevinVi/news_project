@@ -17,6 +17,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.kevin.first_try.R;
+import com.kevin.first_try.model.Data;
+import com.kevin.first_try.tools.JsonRequest;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static android.widget.LinearLayout.*;
 
@@ -45,13 +50,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         text= (EditText)findViewById(R.id.text_2);
         btn = (Button)findViewById(R.id.btn);
         btn.setOnClickListener(this);
-         ll = (LinearLayout)findViewById(R.id.my_test);
+        ll = (LinearLayout)findViewById(R.id.my_test);
         width= ll.getWidth();
 
 
         LinearLayout.LayoutParams parame = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
-         LL = new LinearLayout(this);
+        LL = new LinearLayout(this);
         LL.setBackgroundColor(Color.CYAN);
         LL.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             int linearwidth = LL.getWidth();
             Log.i("sep", separated[i]);
+
             Button myButton = new Button(this);
             myButton.setText(separated[i]);
             final String title = separated[i];
@@ -80,9 +86,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onClick(View v) {
                     Log.i("-------", "title : " + title);
+                    ArrayList<Data> check = null;
+                    try {
+                        check = new JsonRequest(getApplicationContext()).execute(title).get();
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
                     Intent i = new Intent(getApplicationContext(), ListActivity.class);
-                    i.putExtra("search",title);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    i.putExtra("search", title);
+                    i.putExtra("data",check);
                     getApplicationContext().startActivity(i);
                     finish();
                 }
@@ -158,9 +175,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i("dzdzz", search_unsplit);
                 editor.putString("search", search_unsplit);
                 editor.commit();
+
+                ArrayList<Data> check = null;
+                try {
+                    check = new JsonRequest(getApplicationContext()).execute(text.getText().toString()).get();
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
                 Intent i = new Intent(this, ListActivity.class);
+
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("search", text.getText().toString());
+                i.putExtra("data",check);
                 startActivity(i);
                 finish();
             } else {
