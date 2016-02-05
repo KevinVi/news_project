@@ -3,6 +3,9 @@ package com.kevin.first_try.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,22 +60,22 @@ public class ListAdapter extends ArrayAdapter<Data> {
             }
             if(img != null){
                 try {
-                    Bitmap btm = new ImageLoader().execute(p.img).get();
-                    img.setImageBitmap(btm);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
+                    new ImageLoader(img).execute(p.img);
+                } catch (Exception e){
                     e.printStackTrace();
                 }
             }
 
         }
-        final String title=p.content;
+        final Data mData=p;
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(),Detail_activity.class);
-                i.putExtra("title",title);
+                Bundle args = new Bundle();
+                args.putSerializable("mData",mData);
+                Log.i("hello---", String.valueOf(args) + " | " + args.getSerializable("mData").toString());
+                i.putExtra("mData", args);
                 getContext().startActivity(i);
             }
         });

@@ -1,18 +1,29 @@
 package com.kevin.first_try.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.util.Linkify;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kevin.first_try.R;
+import com.kevin.first_try.model.Data;
+import com.kevin.first_try.tools.ImageLoader;
+
+import java.util.concurrent.ExecutionException;
 
 public class Detail_activity extends AppCompatActivity {
 
-    TextView title , content;
+    TextView title , content, link;
+    ImageView img;
+    Data mData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +33,36 @@ public class Detail_activity extends AppCompatActivity {
 
         title = (TextView)findViewById(R.id.title_detail);
         content= (TextView)findViewById(R.id.content_detail);
+        link = (TextView) findViewById(R.id.link_web);
+        img = (ImageView) findViewById(R.id.img_detail);
+
 
         Intent i = getIntent();
+        Bundle mBundle = i.getBundleExtra("mData");
+        Log.i("hello---", String.valueOf(mBundle) + mBundle.toString() + mBundle.getSerializable("mData"));
+        mData = (Data) mBundle.getSerializable("mData");
+        title.setText(mData.getTitle());
+        content.setText(mData.getContent());
 
-        title.setText(i.getStringExtra("title"));
-        content.setText("Je suis un text");
+        link.setText(mData.getUnescapedUrl());
+        link.setLinksClickable(true);
+        final String web_link=mData.getUnescapedUrl();
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Detail_activity.this, WebActivity.class);
+                i.putExtra("link", web_link);
+                startActivity(i);
+            }
+        });
+        Bitmap btm  ;
+        try {
+            new ImageLoader(img).execute(mData.getImg());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

@@ -19,6 +19,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:id="@+id/img_detail"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,9 +41,10 @@
         android:id="@+id/content_detail"
         android:paddingTop="@dimen/fab_margin" />
 
-
-
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/link_web"
+        android:gravity="center"/>
 
 </LinearLayout>

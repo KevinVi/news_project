@@ -31,6 +31,7 @@ public class JsonRequest extends AsyncTask<Object, Void,ArrayList<Data>> {
     private final String PUBLISHER = "publisher";
     private final String DATE = "publishedDate";
     private final String IMG = "url";
+    private final String URL = "unescapedUrl";
 
     private final String RESPONSE = "responseData";
     private final String DETAIL = "responseDetail";
@@ -81,10 +82,11 @@ public class JsonRequest extends AsyncTask<Object, Void,ArrayList<Data>> {
                     String content = contentResult.getString(CONTENT);
                     String date = contentResult.getString(DATE);
                     String publisher = contentResult.getString(PUBLISHER);
+                    String urlWeb = contentResult.getString(URL);
                     JSONObject img = contentResult.getJSONObject(IMAGE);
                     String image = img.getString(IMG);
 
-                    content_data = new Data(title,content,publisher,date,image);
+                    content_data = new Data(title,content,publisher,date,image,urlWeb);
 
                     contents.add(content_data);
 
