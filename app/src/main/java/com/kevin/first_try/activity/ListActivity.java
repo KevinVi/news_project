@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.kevin.first_try.R;
 import com.kevin.first_try.model.Data;
+import com.kevin.first_try.tools.JsonRequest;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,7 @@ public class ListActivity extends AppCompatActivity {
 
         TextView t = (TextView)findViewById(R.id.title_search);
         t.setText(title);
+        Log.i("first_try",JsonRequest.getJson(title,getApplicationContext()).toString());
 
         final ListView listview = (ListView) findViewById(R.id.listview);
 

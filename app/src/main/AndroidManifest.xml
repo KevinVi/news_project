@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
+<<<<<<< HEAD
+
+=======
+>>>>>>> e2c23ee50136ddce0a06a4197b2b6f84d7dbfdee
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
